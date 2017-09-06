@@ -1,17 +1,11 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
-import {
-  Table,
-  TableBody,
-  TableHeader,
-  TableHeaderColumn,
-  TableRow,
-  TableRowColumn,
-} from 'material-ui/Table';
+import ReactTable from "react-table";
+import "react-table/react-table.css";
 
 class App extends Component {
+
   constructor(props) {
     super(props)
     this.state = {
@@ -34,120 +28,199 @@ class App extends Component {
     });
   }
 
-  isSelected(index) {
-    return this.state.selected.indexOf(index) !== -1;
-  }
-
-  handleRowSelection(selectedRow) {
-    let selectedUser = this.state.data[selectedRow];
-    window.location = selectedUser.url
-    console.log(selectedUser)
-    // browserHistory.push(`/usuario_privilegio?userId=${selectedUser.id}`);
-  }
-
   render() {
-    console.log(this.state.data.length)
+    const columns = [{
+      Header: 'Query',
+      columns: [{
+          Header: "Keywords",
+          id: 'qkeywords',
+          accessor: d => d.query.keywords
+        },
+        {
+          Header: "Date",
+          id: 'qdate',
+          accessor: d => d.query.date,
+        },
+        {
+          Header: "Device",
+          id: 'qdevice',
+          accessor: d => d.query.device,
+        },
+        {
+          Header: "Localisation",
+          id: 'qlocalisation',
+          accessor: d => d.query.localisation,
+        },
+        {
+          Header: "Volume",
+          id: 'qvolume',
+          accessor: d => d.query.volume,
+      }]
+    },
+    {
+      Header: 'General',
+      columns: [{
+        Header: "URL",
+        accessor: "url",
+      },
+      {
+        Header: "Type rank",
+        accessor: "type_rank",
+      }]
+    },
+    {
+      Header: 'Rank',
+      columns: [{
+        Header: "2017-07-01",
+        id: 'r1',
+        accessor: d => d.rank['2017-07-01'],
+      },
+      {
+        Header: "2017-07-02",
+        id: 'r2',
+        accessor: d => d.rank['2017-07-02'],
+      },
+      {
+        Header: "2017-07-03",
+        id: 'r3',
+        accessor: d => d.rank['2017-07-03'],
+      },
+      {
+        Header: "2017-07-04",
+        id: 'r4',
+        accessor: d => d.rank['2017-07-04'],
+      },
+      {
+        Header: "2017-07-05",
+        id: 'r5',
+        accessor: d => d.rank['2017-07-05'],
+      },
+      {
+        Header: "2017-07-06",
+        id: 'r6',
+        accessor: d => d.rank['2017-07-06'],
+      },
+      {
+        Header: "2017-07-07",
+        id: 'r7',
+        accessor: d => d.rank['2017-07-07'],
+      },
+      {
+        Header: "2017-07-08",
+        id: 'r8',
+        accessor: d => d.rank['2017-07-08'],
+      },
+      {
+        Header: "2017-07-09",
+        id: 'r9',
+        accessor: d => d.rank['2017-07-09'],
+      },
+      {
+        Header: "2017-07-10",
+        id: 'r10',
+        accessor: d => d.rank['2017-07-10'],
+      },
+      {
+        Header: "2017-07-11",
+        id: 'r11',
+        accessor: d => d.rank['2017-07-11'],
+      },
+      {
+        Header: "2017-07-12",
+        id: 'r12',
+        accessor: d => d.rank['2017-07-12'],
+      },
+      {
+        Header: "2017-07-13",
+        id: 'r13',
+        accessor: d => d.rank['2017-07-13'],
+      },
+      {
+        Header: "2017-07-14",
+        id: 'r14',
+        accessor: d => d.rank['2017-07-14'],
+      },
+      {
+        Header: "2017-07-15",
+        id: 'r15',
+        accessor: d => d.rank['2017-07-15'],
+      },
+      {
+        Header: "2017-07-16",
+        id: 'r16',
+        accessor: d => d.rank['2017-07-16'],
+      },
+      {
+        Header: "2017-07-17",
+        id: 'r17',
+        accessor: d => d.rank['2017-07-17'],
+      },
+      {
+        Header: "2017-07-18",
+        id: 'r18',
+        accessor: d => d.rank['2017-07-18'],
+      },
+      {
+        Header: "2017-07-19",
+        id: 'r19',
+        accessor: d => d.rank['2017-07-19'],
+      },
+      {
+        Header: "2017-07-20",
+        id: 'r20',
+        accessor: d => d.rank['2017-07-20'],
+      },
+      {
+        Header: "2017-07-21",
+        id: 'r21',
+        accessor: d => d.rank['2017-07-21'],
+      },
+      {
+        Header: "2017-07-22",
+        id: 'r22',
+        accessor: d => d.rank['2017-07-22'],
+      },
+      {
+        Header: "2017-07-23",
+        id: 'r23',
+        accessor: d => d.rank['2017-07-23'],
+      },
+      {
+        Header: "2017-07-24",
+        id: 'r24',
+        accessor: d => d.rank['2017-07-24'],
+      }]
+    }]
     return (
-      <MuiThemeProvider>
-        <div style={{width: 7000, overflow: 'visible'}}>
-        <Table onRowSelection={this.handleRowSelection.bind(this)} style={{ tableLayout: 'auto'}} fixedHeader={false}>
-          <TableHeader displaySelectAll ={false}>
-            <TableRow>
-              <TableHeaderColumn>Entity</TableHeaderColumn>
-              <TableHeaderColumn>Query country</TableHeaderColumn>
-              <TableHeaderColumn>Query service</TableHeaderColumn>
-              <TableHeaderColumn>Query version</TableHeaderColumn>
-              <TableHeaderColumn>Query language</TableHeaderColumn>
-              <TableHeaderColumn>Query keywords</TableHeaderColumn>
-              <TableHeaderColumn>Query id</TableHeaderColumn>
-              <TableHeaderColumn>Query date</TableHeaderColumn>
-              <TableHeaderColumn>Query device</TableHeaderColumn>
-              <TableHeaderColumn>Query nb top</TableHeaderColumn>
-              <TableHeaderColumn>Query localisation</TableHeaderColumn>
-              <TableHeaderColumn>Query volume</TableHeaderColumn>
-              <TableHeaderColumn>Url</TableHeaderColumn>
-
-              <TableHeaderColumn>Keywords</TableHeaderColumn>
-              <TableHeaderColumn>Type Rank</TableHeaderColumn>
-
-              <TableHeaderColumn>Rank 2017-07-01</TableHeaderColumn>
-              <TableHeaderColumn>Rank 2017-07-02</TableHeaderColumn>
-              <TableHeaderColumn>Rank 2017-07-03</TableHeaderColumn>
-              <TableHeaderColumn>Rank 2017-07-04</TableHeaderColumn>
-              <TableHeaderColumn>Rank 2017-07-05</TableHeaderColumn>
-              <TableHeaderColumn>Rank 2017-07-06</TableHeaderColumn>
-              <TableHeaderColumn>Rank 2017-07-07</TableHeaderColumn>
-              <TableHeaderColumn>Rank 2017-07-08</TableHeaderColumn>
-              <TableHeaderColumn>Rank 2017-07-09</TableHeaderColumn>
-              <TableHeaderColumn>Rank 2017-07-10</TableHeaderColumn>
-              <TableHeaderColumn>Rank 2017-07-11</TableHeaderColumn>
-              <TableHeaderColumn>Rank 2017-07-12</TableHeaderColumn>
-              <TableHeaderColumn>Rank 2017-07-13</TableHeaderColumn>
-              <TableHeaderColumn>Rank 2017-07-14</TableHeaderColumn>
-              <TableHeaderColumn>Rank 2017-07-15</TableHeaderColumn>
-              <TableHeaderColumn>Rank 2017-07-16</TableHeaderColumn>
-              <TableHeaderColumn>Rank 2017-07-17</TableHeaderColumn>
-              <TableHeaderColumn>Rank 2017-07-18</TableHeaderColumn>
-              <TableHeaderColumn>Rank 2017-07-19</TableHeaderColumn>
-              <TableHeaderColumn>Rank 2017-07-20</TableHeaderColumn>
-              <TableHeaderColumn>Rank 2017-07-21</TableHeaderColumn>
-              <TableHeaderColumn>Rank 2017-07-22</TableHeaderColumn>
-              <TableHeaderColumn>Rank 2017-07-23</TableHeaderColumn>
-              <TableHeaderColumn>Rank 2017-07-24</TableHeaderColumn>
-            </TableRow>
-          </TableHeader>
-          <TableBody displayRowCheckbox={false} showRowHover >
-            {this.state.data.map((row, i) => (
-                <TableRow selected={this.isSelected(0)}>
-                  <TableRowColumn>{i}</TableRowColumn>
-
-                  <TableRowColumn>{row.entity}</TableRowColumn>
-                  <TableRowColumn>{row.query.country}</TableRowColumn>
-                  <TableRowColumn>{row.query.service}</TableRowColumn>
-                  <TableRowColumn>{row.query.version}</TableRowColumn>
-                  <TableRowColumn>{row.query.language}</TableRowColumn>
-                  <TableRowColumn>{row.query.keywords}</TableRowColumn>
-                  <TableRowColumn>{row.query.id}</TableRowColumn>
-                  <TableRowColumn>{row.query.date}</TableRowColumn>
-                  <TableRowColumn>{row.query.device}</TableRowColumn>
-                  <TableRowColumn>{row.query.nb_top}</TableRowColumn>
-                  <TableRowColumn>{row.query.localisation}</TableRowColumn>
-                  <TableRowColumn>{row.query.volume}</TableRowColumn>
-                  <TableRowColumn>{row.url}</TableRowColumn>
-
-                  <TableRowColumn>{row.keywords}</TableRowColumn>
-                  <TableRowColumn>{row.type_rank}</TableRowColumn>
-
-                  <TableRowColumn>{row.rank['2017-07-01']}</TableRowColumn>
-                  <TableRowColumn>{row.rank['2017-07-02']}</TableRowColumn>
-                  <TableRowColumn>{row.rank['2017-07-03']}</TableRowColumn>
-                  <TableRowColumn>{row.rank['2017-07-04']}</TableRowColumn>
-                  <TableRowColumn>{row.rank['2017-07-05']}</TableRowColumn>
-                  <TableRowColumn>{row.rank['2017-07-06']}</TableRowColumn>
-                  <TableRowColumn>{row.rank['2017-07-07']}</TableRowColumn>
-                  <TableRowColumn>{row.rank['2017-07-08']}</TableRowColumn>
-                  <TableRowColumn>{row.rank['2017-07-09']}</TableRowColumn>
-                  <TableRowColumn>{row.rank['2017-07-10']}</TableRowColumn>
-                  <TableRowColumn>{row.rank['2017-07-11']}</TableRowColumn>
-                  <TableRowColumn>{row.rank['2017-07-12']}</TableRowColumn>
-                  <TableRowColumn>{row.rank['2017-07-13']}</TableRowColumn>
-                  <TableRowColumn>{row.rank['2017-07-14']}</TableRowColumn>
-                  <TableRowColumn>{row.rank['2017-07-15']}</TableRowColumn>
-                  <TableRowColumn>{row.rank['2017-07-16']}</TableRowColumn>
-                  <TableRowColumn>{row.rank['2017-07-17']}</TableRowColumn>
-                  <TableRowColumn>{row.rank['2017-07-18']}</TableRowColumn>
-                  <TableRowColumn>{row.rank['2017-07-19']}</TableRowColumn>
-                  <TableRowColumn>{row.rank['2017-07-20']}</TableRowColumn>
-                  <TableRowColumn>{row.rank['2017-07-21']}</TableRowColumn>
-                  <TableRowColumn>{row.rank['2017-07-22']}</TableRowColumn>
-                  <TableRowColumn>{row.rank['2017-07-23']}</TableRowColumn>
-                  <TableRowColumn>{row.rank['2017-07-24']}</TableRowColumn>
-                </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+      <div>
+          <ReactTable
+            data={this.state.data}
+            filterable
+            columns={columns}
+            className="-striped -highlight"
+            style={{overflow: 'visible'}}
+            getTdProps={(state, rowInfo, column, instance) => {
+              return {
+                onClick: (e, handleOriginal) => {
+                  console.log('A Td Element was clicked!')
+                  console.log('it produced this event:', e)
+                  console.log('It was in this column:', column)
+                  console.log('It was in this row:', rowInfo)
+                  console.log('It was in this table instance:', instance)
+                  window.location = rowInfo.original.url
+                  // IMPORTANT! React-Table uses onClick internally to trigger
+                  // events like expanding SubComponents and pivots.
+                  // By default a custom 'onClick' handler will override this functionality.
+                  // If you want to fire the original onClick handler, call the
+                  // 'handleOriginal' function.
+                  if (handleOriginal) {
+                    handleOriginal()
+                  }
+                }
+              }
+            }}
+          />
         </div>
-      </MuiThemeProvider>
     );
   }
 }
