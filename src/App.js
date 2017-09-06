@@ -42,10 +42,11 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.data)
+    console.log(this.state.data.length)
     return (
       <MuiThemeProvider>
-        <Table onRowSelection={this.handleRowSelection.bind(this)} style={{ tableLayout: 'auto', overflow: 'visible' }} fixedHeader={false} bodyStyle={{overflow: 'visible'}}>
+        <div style={{width: 2500, overflow: 'visible'}}>
+        <Table onRowSelection={this.handleRowSelection.bind(this)} style={{ tableLayout: 'auto'}} fixedHeader={false}>
           <TableHeader displaySelectAll ={false}>
             <TableRow>
               <TableHeaderColumn>Url</TableHeaderColumn>
@@ -140,6 +141,7 @@ class App extends Component {
             ))}
           </TableBody>
         </Table>
+        </div>
       </MuiThemeProvider>
     );
   }
