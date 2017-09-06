@@ -45,7 +45,7 @@ class App extends Component {
     console.log(this.state.data.length)
     return (
       <MuiThemeProvider>
-        <div style={{width: 2500, overflow: 'visible'}}>
+        <div style={{width: 7000, overflow: 'visible'}}>
         <Table onRowSelection={this.handleRowSelection.bind(this)} style={{ tableLayout: 'auto'}} fixedHeader={false}>
           <TableHeader displaySelectAll ={false}>
             <TableRow>
